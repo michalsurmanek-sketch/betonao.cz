@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BetonAO – Katalog výrobců a dodavatelů betonu</title>
+  <meta name="description" content="BetonAO: Heureka pro beton. Najdi betonárny, výrobce prefabrikátů, dopravce a montážní firmy ve svém kraji." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --ao-blue: #1351ff; /* královská modrá AO */
+      --concrete:#cfcfcf;
+      --graphite:#1c1f25;
+    }
+    body{font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;}
+    .concrete-bg{background-image: radial-gradient(circle at 20% 20%, #e7e7e7 0, #d9d9d9 35%, #cfcfcf 55%, #c6c6c6 75%, #bebebe 100%);}    
+    .glass{backdrop-filter: blur(6px);} 
+  </style>
+</head>
+<body class="bg-white text-slate-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 glass border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg bg-[var(--ao-blue)] text-white grid place-items-center font-bold">B</div>
+          <div class="font-semibold tracking-wide text-slate-900 group-hover:text-[var(--ao-blue)] transition">BetonAO</div>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#kategorie" class="hover:text-[var(--ao-blue)]">Kategorie</a>
+          <a href="#mapa" class="hover:text-[var(--ao-blue)]">Mapa</a>
+          <a href="#magazin" class="hover:text-[var(--ao-blue)]">Magazín</a>
+          <a href="#registrace" class="hover:text-[var(--ao-blue)] font-medium">Pro firmy</a>
+          <a href="#kontakt" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-[var(--ao-blue)] text-white shadow hover:shadow-md">Přidat firmu</a>
+        </nav>
+        <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200"><span>Menu</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4">
+        <div class="grid gap-2 text-sm">
+          <a href="#kategorie" class="px-3 py-2 rounded-lg hover:bg-slate-50">Kategorie</a>
+          <a href="#mapa" class="px-3 py-2 rounded-lg hover:bg-slate-50">Mapa</a>
+          <a href="#magazin" class="px-3 py-2 rounded-lg hover:bg-slate-50">Magazín</a>
+          <a href="#registrace" class="px-3 py-2 rounded-lg hover:bg-slate-50">Pro firmy</a>
+          <a href="#kontakt" class="px-3 py-2 rounded-lg bg-[var(--ao-blue)] text-white">Přidat firmu</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="concrete-bg relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-white/60 to-white/10"></div>
+    <div class="relative max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight text-slate-900">Heureka pro beton<br class="hidden md:block"/> <span class="text-[var(--ao-blue)]">Najdi výrobce a dodavatele ve svém kraji</span></h1>
+          <p class="mt-4 text-slate-700 md:text-lg">Katalog betonáren, výrobců prefabrikátů, dopravců a montážních firem. Srovnávej podle kraje, kategorie i hodnocení.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#vyhledavani" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--ao-blue)] text-white shadow hover:shadow-md">Začít hledat</a>
+            <a href="#registrace" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 hover:border-[var(--ao-blue)]">Jsem dodavatel</a>
+          </div>
+        </div>
+        <div class="md:pl-8">
+          <div class="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+            <div class="text-sm text-slate-500 mb-2">Rychlé filtrování</div>
+            <div id="vyhledavani" class="grid sm:grid-cols-3 gap-3">
+              <div>
+                <label class="text-xs text-slate-500">Kraj</label>
+                <select id="filterKraj" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-300">
+                  <option value="">Všechny kraje</option>
+                  <option>Zlínský</option>
+                  <option>Jihomoravský</option>
+                  <option>Moravskoslezský</option>
+                  <option>Olomoucký</option>
+                  <option>Praha</option>
+                  <option>Středočeský</option>
+                  <option>Jihočeský</option>
+                  <option>Plzeňský</option>
+                  <option>Karlovarský</option>
+                  <option>Ústecký</option>
+                  <option>Liberecký</option>
+                  <option>Královéhradecký</option>
+                  <option>Pardubický</option>
+                  <option>Vysočina</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs text-slate-500">Kategorie</label>
+                <select id="filterKategorie" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-300">
+                  <option value="">Všechny</option>
+                  <option>Betonárna</option>
+                  <option>Prefabrikáty</option>
+                  <option>Doprava betonu</option>
+                  <option>Montáž plotů</option>
+                  <option>Dlažby a obrubníky</option>
+                  <option>Armatury</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs text-slate-500">Hledat</label>
+                <input id="filterText" type="search" placeholder="název, město…" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-300" />
+              </div>
+            </div>
+            <div class="mt-4 flex gap-3">
+              <button id="btnFiltrovat" class="px-4 py-2 rounded-xl bg-[var(--ao-blue)] text-white">Filtrovat</button>
+              <button id="btnReset" class="px-4 py-2 rounded-xl border border-slate-300">Vyčistit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kategorie chips -->
+  <section id="kategorie" class="py-8">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl md:text-2xl font-bold">Kategorie</h2>
+        <a href="#" class="text-[var(--ao-blue)] text-sm">Zobrazit vše</a>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button data-cat="Betonárna" class="chip px-3 py-2 rounded-full border border-slate-300 hover:border-[var(--ao-blue)]">Betonárny</button>
+        <button data-cat="Prefabrikáty" class="chip px-3 py-2 rounded-full border border-slate-300 hover:border-[var(--ao-blue)]">Prefabrikáty</button>
+        <button data-cat="Doprava betonu" class="chip px-3 py-2 rounded-full border border-slate-300 hover:border-[var(--ao-blue)]">Doprava betonu</button>
+        <button data-cat="Montáž plotů" class="chip px-3 py-2 rounded-full border border-slate-300 hover:border-[var(--ao-blue)]">Montáž plotů</button>
+        <button data-cat="Dlažby a obrubníky" class="chip px-3 py-2 rounded-full border border-slate-300 hover:border-[var(--ao-blue)]">Dlažby a obrubníky</button>
+        <button data-cat="Armatury" class="chip px-3 py-2 rounded-full border border-slate-300 hover:border-[var(--ao-blue)]">Armatury</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Výpis firem -->
+  <section class="py-6 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl md:text-2xl font-bold">Doporučení dodavatelé</h2>
+        <div class="text-sm text-slate-500"><span id="count">0</span> nalezených</div>
+      </div>
+
+      <div id="list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Karty se plní dynamicky -->
+      </div>
+
+      <!-- Stránkování placeholder -->
+      <div class="mt-6 flex justify-center">
+        <button class="px-4 py-2 rounded-xl border border-slate-300 hover:border-[var(--ao-blue)]">Načíst další</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa (placeholder) -->
+  <section id="mapa" class="py-12">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl font-bold">Mapa dodavatelů</h2>
+          <p class="mt-3 text-slate-700">Brzy přidáme interaktivní mapu s filtrováním dle kraje a kategorie. Zatím můžeš procházet firmy níže.</p>
+          <ul class="mt-4 text-sm list-disc pl-5 text-slate-600">
+            <li>Filtrování podle kraje a kategorie</li>
+            <li>Ověřený profil dodavatele</li>
+            <li>Hodnocení a recenze</li>
+            <li>Poptejte více firem najednou</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-dashed border-slate-300 h-64 md:h-80 grid place-items-center bg-slate-50">
+          <span class="text-slate-500">[ Rezervováno pro mapu ]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pro firmy / registrace -->
+  <section id="registrace" class="py-12 bg-[var(--graphite)] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl font-bold">Jste výrobce nebo dodavatel?</h2>
+          <p class="mt-3 text-slate-200">Získejte více poptávek díky profilu na BetonAO. Ceník je jednoduchý: Free profil → Start, Ověřený profil → více detailů, Top profil → priorita ve výpisu.</p>
+          <ul class="mt-4 text-sm list-disc pl-5 text-slate-300">
+            <li>Veřejný profil + kontakt</li>
+            <li>Kategorie, kraje, fotogalerie</li>
+            <li>Hodnocení + odznak „Ověřeno“</li>
+            <li>Prioritní zobrazování v kraji</li>
+          </ul>
+        </div>
+        <form class="bg-white text-slate-800 rounded-2xl p-6 border border-slate-200 shadow">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs text-slate-500">Název firmy</label>
+              <input type="text" placeholder="např. Betonárna Alfa s.r.o." class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-300"/>
+            </div>
+            <div>
+              <label class="text-xs text-slate-500">Kraj</label>
+              <select class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-300">
+                <option>Zlínský</option><option>Jihomoravský</option><option>Moravskoslezský</option><option>Olomoucký</option><option>Praha</option><option>Středočeský</option><option>Jihočeský</option><option>Plzeňský</option><option>Karlovarský</option><option>Ústecký</option><option>Liberecký</option><option>Královéhradecký</option><option>Pardubický</option><option>Vysočina</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-xs text-slate-500">Kategorie</label>
+              <div class="grid sm:grid-cols-3 gap-2 mt-1 text-sm">
+                <label class="flex items-center gap-2"><input type="checkbox"/> Betonárna</label>
+                <label class="flex items-center gap-2"><input type="checkbox"/> Prefabrikáty</label>
+                <label class="flex items-center gap-2"><input type="checkbox"/> Doprava betonu</label>
+                <label class="flex items-center gap-2"><input type="checkbox"/> Montáž plotů</label>
+                <label class="flex items-center gap-2"><input type="checkbox"/> Dlažby a obrubníky</label>
+                <label class="flex items-center gap-2"><input type="checkbox"/> Armatury</label>
+              </div>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-xs text-slate-500">Kontakt</label>
+              <input type="email" placeholder="e-mail" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-300"/>
+            </div>
+            <div class="md:col-span-2">
+              <button type="button" class="w-full px-4 py-2 rounded-xl bg-[var(--ao-blue)] text-white">Odeslat zájem</button>
+            </div>
+            <p class="text-xs text-slate-500 md:col-span-2">Odesláním souhlasíte se zpracováním údajů pro účely založení firemního profilu.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Magazín -->
+  <section id="magazin" class="py-12">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Magazín</h2>
+        <a href="#" class="text-[var(--ao-blue)] text-sm">Všechny články</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition bg-white">
+          <div class="h-36 bg-slate-100 grid place-items-center text-slate-500">Ilustrační foto</div>
+          <div class="p-4">
+            <h3 class="font-semibold">Jak vybrat betonový plot podle terénu</h3>
+            <p class="text-sm text-slate-600 mt-1">Základy, výšky, povrch, montážní tipy a časté chyby…</p>
+            <a href="#" class="inline-block mt-3 text-[var(--ao-blue)] text-sm">Číst</a>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition bg-white">
+          <div class="h-36 bg-slate-100 grid place-items-center text-slate-500">Ilustrační foto</div>
+          <div class="p-4">
+            <h3 class="font-semibold">Prefabrikované panely: rychlost vs. cena</h3>
+            <p class="text-sm text-slate-600 mt-1">Kdy se vyplatí prefabrikát a kdy litý beton na místě.</p>
+            <a href="#" class="inline-block mt-3 text-[var(--ao-blue)] text-sm">Číst</a>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition bg-white">
+          <div class="h-36 bg-slate-100 grid place-items-center text-slate-500">Ilustrační foto</div>
+          <div class="p-4">
+            <h3 class="font-semibold">Srovnání směsí C20/25 vs. C25/30</h3>
+            <p class="text-sm text-slate-600 mt-1">Parametry, použití a doporučení pro domácí i profi stavby.</p>
+            <a href="#" class="inline-block mt-3 text-[var(--ao-blue)] text-sm">Číst</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt / patička -->
+  <footer id="kontakt" class="pt-12 pb-10 bg-slate-900 text-slate-200">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-[var(--ao-blue)] text-white grid place-items-center font-bold">B</div>
+            <div class="font-semibold tracking-wide">BetonAO</div>
+          </div>
+          <p class="mt-3 text-sm text-slate-400 max-w-prose">Katalog dodavatelů betonu a prefabrikátů. Propojujeme stavební firmy, výrobce a montážníky s poptávkami napříč kraji.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold">AO projekty</h4>
+          <ul class="mt-3 text-sm space-y-1 text-slate-300">
+            <li><a class="hover:text-white" href="#">PlotAO.cz</a></li>
+            <li><a class="hover:text-white" href="#">StavbAO.cz</a></li>
+            <li><a class="hover:text-white" href="#">CZBeton.cz</a></li>
+            <li><a class="hover:text-white" href="#">DomenAO.cz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold">Kontakt</h4>
+          <ul class="mt-3 text-sm space-y-1 text-slate-300">
+            <li>info@betonao.cz</li>
+            <li>IČ: 00000000</li>
+            <li>Uherské Hradiště</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500">© 2025 BetonAO – All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo data (fiktivní)
+    const firmy = [
+      { nazev: 'Betonárna Alfa', kraj: 'Zlínský', kategorie: ['Betonárna', 'Doprava betonu'], mesto: 'Uherské Hradiště', rating: 4.7 },
+      { nazev: 'Prefa Beta', kraj: 'Jihomoravský', kategorie: ['Prefabrikáty'], mesto: 'Brno', rating: 4.5 },
+      { nazev: 'Montáže Gamma', kraj: 'Zlínský', kategorie: ['Montáž plotů'], mesto: 'Zlín', rating: 4.3 },
+      { nazev: 'Doprava Delta', kraj: 'Moravskoslezský', kategorie: ['Doprava betonu'], mesto: 'Ostrava', rating: 4.2 },
+      { nazev: 'ArmSteel', kraj: 'Olomoucký', kategorie: ['Armatury'], mesto: 'Olomouc', rating: 4.6 },
+      { nazev: 'Dlažby Epsilon', kraj: 'Středočeský', kategorie: ['Dlažby a obrubníky'], mesto: 'Kladno', rating: 4.1 },
+      { nazev: 'Prefa Sigma', kraj: 'Praha', kategorie: ['Prefabrikáty', 'Doprava betonu'], mesto: 'Praha', rating: 4.8 },
+      { nazev: 'Ploty Omega', kraj: 'Vysočina', kategorie: ['Montáž plotů', 'Prefabrikáty'], mesto: 'Jihlava', rating: 4.0 },
+      { nazev: 'BetonMix Rho', kraj: 'Plzeňský', kategorie: ['Betonárna'], mesto: 'Plzeň', rating: 4.4 },
+      { nazev: 'NordArm', kraj: 'Liberecký', kategorie: ['Armatury'], mesto: 'Liberec', rating: 4.2 },
+      { nazev: 'Transport Zeta', kraj: 'Ústecký', kategorie: ['Doprava betonu'], mesto: 'Ústí nad Labem', rating: 3.9 },
+    ];
+
+    const listEl = document.getElementById('list');
+    const countEl = document.getElementById('count');
+    const filterKraj = document.getElementById('filterKraj');
+    const filterKategorie = document.getElementById('filterKategorie');
+    const filterText = document.getElementById('filterText');
+    const btnFiltrovat = document.getElementById('btnFiltrovat');
+    const btnReset = document.getElementById('btnReset');
+    const chips = document.querySelectorAll('.chip');
+
+    function renderList(data){
+      listEl.innerHTML = '';
+      data.forEach(f => {
+        const card = document.createElement('article');
+        card.className = 'rounded-2xl border border-slate-200 bg-white p-4 hover:shadow-md transition flex flex-col';
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="font-semibold text-lg">${f.nazev}</h3>
+            <div class="text-xs px-2 py-1 rounded bg-slate-100">${f.kraj}</div>
+          </div>
+          <div class="mt-2 text-sm text-slate-600">${f.mesto}</div>
+          <div class="mt-2 flex flex-wrap gap-2">
+            ${f.kategorie.map(k => `<span class='text-xs px-2 py-1 rounded-full border border-slate-300'>${k}</span>`).join('')}
+          </div>
+          <div class="mt-3 text-sm">Hodnocení: <span class="font-medium">${f.rating.toFixed(1)}</span> / 5</div>
+          <div class="mt-4 flex gap-2">
+            <a href="#" class="px-3 py-2 rounded-xl bg-[var(--ao-blue)] text-white text-sm">Detail profilu</a>
+            <a href="#" class="px-3 py-2 rounded-xl border border-slate-300 text-sm">Poslat poptávku</a>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+      countEl.textContent = data.length;
+    }
+
+    function filtruj(){
+      const kraj = filterKraj.value.trim();
+      const kat = filterKategorie.value.trim();
+      const txt = filterText.value.trim().toLowerCase();
+      const out = firmy.filter(f => {
+        const okKraj = !kraj || f.kraj === kraj;
+        const okKat = !kat || f.kategorie.includes(kat);
+        const okTxt = !txt || (f.nazev.toLowerCase().includes(txt) || f.mesto.toLowerCase().includes(txt));
+        return okKraj && okKat && okTxt;
+      });
+      renderList(out);
+    }
+
+    btnFiltrovat.addEventListener('click', filtruj);
+    btnReset.addEventListener('click', () => {filterKraj.value=''; filterKategorie.value=''; filterText.value=''; renderList(firmy);});
+    chips.forEach(ch => ch.addEventListener('click', () => {filterKategorie.value = ch.dataset.cat; filtruj();}));
+
+    // mobile menu
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    });
+
+    // initial
+    renderList(firmy);
+  </script>
+</body>
+</html>
