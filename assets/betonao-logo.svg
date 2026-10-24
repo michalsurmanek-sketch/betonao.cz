@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 160" role="img" aria-labelledby="title desc">
+<title id="title">Betonao</title><desc id="desc">Stylized landscape above a concrete fence, followed by the Betonao wordmark.</desc>
+<g transform="translate(12 12)">
+<circle cx="101" cy="32" r="14" fill="#D88758"/>
+<path d="M16 79c17-18 37-27 55-24 12 2 20 10 31 13 11 3 23-1 39-13" fill="none" stroke="#29483A" stroke-width="8" stroke-linecap="round"/>
+<path d="M18 82h119v54H18z" fill="#29483A"/>
+<path d="M18 109h119M57 82v54m40-54v54" fill="none" stroke="#F4F1E8" stroke-width="5"/>
+</g>
+<text x="174" y="119" font-family="Manrope,Montserrat,Arial,sans-serif" font-size="94" font-weight="800" letter-spacing="-5" fill="#29483A">beton<tspan fill="#D88758">ao</tspan></text>
+</svg>
