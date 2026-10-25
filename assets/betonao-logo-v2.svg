@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 190" role="img" aria-labelledby="title desc">
+<title id="title">Betonao — betonové ploty</title>
+<desc id="desc">Geometrický symbol betonových plotových panelů, nápis Betonao a podtitul Betonové ploty.</desc>
+<g transform="translate(197 8)">
+<path d="M16 10h94v122H16z" rx="3" fill="#252b2a"/>
+<path d="M110 22h19v98h-19z" fill="#e8874e"/>
+<path d="M129 22h171v45H129z" fill="#aeb2af"/>
+<path d="M129 75h171v45H129z" fill="#858b88"/>
+<path d="M140 31h151M140 84h151" stroke="#c9ccca" stroke-width="3" opacity=".65"/>
+<path d="M16 132h284" stroke="#252b2a" stroke-width="9"/>
+</g>
+<text x="260" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="39" font-weight="800" letter-spacing="2" fill="#252b2a">BETONAO</text>
+<text x="260" y="181" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="4" fill="#737a77">BETONOVÉ PLOTY</text>
+</svg>
