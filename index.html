@@ -108,8 +108,8 @@ form.addEventListener('submit',async e=>{
 e.preventDefault();if(!form.reportValidity())return;
 const data=Object.fromEntries(new FormData(form).entries());
 const button=form.querySelector('button[type=submit]');button.disabled=true;button.textContent='Odesílám…';msg.classList.remove('show');
-const length=data.length==='Do 20 metrů'?15:data.length==='20–50 metrů'?35:data.length==='50–100 metrů'?75:data.length==='Více než 100 metrů'?120:10;
-const height=data.height==='Do 1,5 m'?140:data.height==='1,5–2 m'?180:data.height==='Více než 2 m'?220:180;
+const length=data.length==='Do 20 metrů'?15:data.length==='20–50 metrů'?35:data.length==='50–100 metrů'?75:data.length==='Více než 100 metrů'?120:null;
+const height=data.height==='Do 1,5 m'?140:data.height==='1,5–2 m'?180:data.height==='Více než 2 m'?220:null;
 const scope=data.service==='Materiál i montáž'?'turnkey':data.service==='Montáž plotu'?'turnkey':'delivery';
 const options=[data.length&&'Přibližná délka: '+data.length,data.height&&'Požadovaná výška: '+data.height,data.service&&'Požadovaná služba: '+data.service].filter(Boolean);
 const payload={transportVersion:1,source:'betonao.cz',submittedAt:new Date().toISOString(),lead:{schemaVersion:2,mode:'lead',name:data.name,phone:data.phone,email:data.email,place:data.place,region:'',note:[data.details,'Poptávka z webu Betonao.cz. Betonový plot.'].filter(Boolean).join('\\n'),fenceType:'Betonový plot',height,segments:[{name:'Celková délka (orientační)',length,connection:'začátek'}],options,gate:false,wicket:false,scopeValue:scope,scope:data.service||'Materiál i montáž',displayedPrice:'',priceKind:'individuální nabídka'}};
